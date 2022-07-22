@@ -1,0 +1,33 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          npm run lint
+  test:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          npm run test
+  analyse:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          npm audit
+
+workflow:
+  simpleCI:
+    - build
+    - test:
+        requires:
+          - build
+    - analyse:
+        requires:
+          - test
