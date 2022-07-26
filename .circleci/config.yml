@@ -25,10 +25,6 @@ jobs:
       - checkout
       - run:
           npm audit
-  my_job:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
       - run:
           name: on error
           command: echo "Hello Error!"
@@ -43,5 +39,4 @@ workflows:
             - build
       - analyse:
           requires:
-            - test
-      - my_job 
+            - test 
