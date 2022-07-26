@@ -25,6 +25,14 @@ jobs:
       - checkout
       - run:
           npm audit
+  my_job:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run:
+          name: on error
+          command: echo "Hello Error!"
+          when: on_fail
 
 workflows:
   myworkflow:
@@ -36,3 +44,4 @@ workflows:
       - analyse:
           requires:
             - test
+      - my_job 
