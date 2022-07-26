@@ -27,7 +27,7 @@ jobs:
           npm audit
 
 workflow:
-  simpleCI:
+  myworkflow:
     - build
     - test:
         requires:
